@@ -12,6 +12,37 @@ body {
     position: relative;
     background-position: center;
 }
+.top-container {
+    margin-top: 16vh;
+}
+div h1 {
+    display: inline-block;
+    display: block;
+    font-size: 8vh;
+    color:orchid;
+    text-shadow: 0 0 5px #A5F1FF, 0 0 10px #A5F1FF,
+             0 0 20px #A5F1FF, 0 0 30px #A5F1FF,
+             0 0 40px #A5F1FF;
+   
+}
+.top-display div {
+    margin: 0 10vw;
+    display: inline;
+    text-align: center;
+    font-size: 25px;
+    text-emphasis: bolder;
+    color: lime;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 1%;
+
+    background-color: darkblue;
+}
+.card-layout {
+    display: grid;
+    height: 63vh;
+    align-content: center;
+}
 .card {
     display: inline-flex;
     height: 124px;
@@ -23,51 +54,20 @@ body {
     border: 1px solid gray;
     background-position: center;
     background-color: white;
+    align-content: center;
 }
 .back-of-card {
-    
     background-image: url("Images/BackofCards.jpg");
-   
-}
-.top-container {
-    margin-top: 16vh;
-}
-.card-layout {
-    display: block;
-    padding: 5%;
 }
 .row {
     text-align: center;
+    
 }
-.top-display {
-    display: inline-block;
-    width: 100vw;
+div.card:hover {
+    
+    box-shadow: inset   0 0 0.25em 0.25em indigo,
+                        0 0 0.25em 0.25em indigo;  /* padding:1em */
 }
-.top-diplay div {
-    padding: 20vw;
-}
-h1 {
-    width: 50vw;
-    display: block;
-    margin-left: 25vw;
-    font-size: 5vh;
-}
-
-.top-display div {
-    margin: 0 5vw;
-    display: inline;
-    text-align: center;
-    font-size: 25px;
-    text-emphasis: bolder;
-    color: green;
-    border: 2px solid black;
-    border-radius: 10px;
-    padding: 1%;
-}
-.card:hover {
-
-}
-
 button {
     border-top: 1px solid #e88e2e;
     background: #65d672;
@@ -87,7 +87,8 @@ button {
     font-size: 30px;
     font-family: Helvetica, Arial, Sans-Serif;
     text-decoration: none;
-    vertical-align: middle;
+
+    margin: 0 10%;
     padding: 10px 20px;
     cursor: pointer;
     
@@ -103,6 +104,4 @@ button {
     background: #491b5c;
     cursor: pointer;
     }
-.card-container {
-    display: inline;
-}
+
