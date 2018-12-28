@@ -7,3 +7,4 @@ function startWhenLoaded(){
 function backOfCards(){
     $(".card").addClass("back-of-card");
 };
+// using .find('img').attr(src) to pull the image address and compare if its the same or not
