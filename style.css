@@ -2,6 +2,7 @@ body {
     margin: 0%;
     text-align: center;
 }
+
 .wrapper {
     display: inline-block;
     background-image: url("Images/background1.jpg");
@@ -12,38 +13,66 @@ body {
     position: relative;
     background-position: center;
 }
+
 .top-container {
     margin-top: 16vh;
 }
+
 div h1 {
     display: inline-block;
     display: block;
     font-size: 60px;
     color:orchid;
-    text-shadow: 0 0 5px #A5F1FF, 0 0 10px #A5F1FF,
-             0 0 20px #A5F1FF, 0 0 30px #A5F1FF,
-             0 0 40px #A5F1FF;
-   
+    text-shadow: 0 0 20px rgb(230, 255, 90), 0 0 25px rgb(230, 255, 90),
+             0 0 25px rgb(230, 255, 90), 0 0 45px rgb(230, 255, 90),
+             0 0 55px rgb(230, 255, 90);
 }
-.top-display div {
-    margin: 0 10vw;
+
+.top-display {
+    display: flex;
+}
+.button-container {
     display: inline;
+    text-align: center;
+    width: 50%;
+}
+
+div .button-container .reset {
+
+}
+
+.reset {
+    background-color: black;
+    align-content: left:
+}
+
+.stats-container{
+    display: inline-flex;
+    text-align: center;
+    width: 50%;
+}
+.stats-container div {
+    align-items: center;
+    display: inline-flex;
     text-align: center;
     font-size: 1.5rem;
     text-emphasis: bolder;
     color: lime;
     border: 2px solid black;
     border-radius: 10px;
-    padding: 1vw;
-
     background-color: darkblue;
     white-space: nowrap;
+    padding: 1vw 3vw;
+    font-size: 1.0rem;
+    margin: 0 5vw;
 }
+
 .card-layout {
     display: grid;
     height: 55vh;
     align-content: center;
 }
+
 .card {
     display: inline-flex;
     height: 130px;
@@ -57,18 +86,21 @@ div h1 {
     background-color: white;
     align-content: center;
 }
+
 .back-of-card {
     background-image: url("Images/BackofCards.jpg");
 }
+
 .row {
     text-align: center;
-    
 }
+
 div.card:hover {
     cursor: pointer;
     box-shadow: inset   0 0 0.25em 0.25em indigo,
                         0 0 0.25em 0.25em indigo;  /* padding:1em */
 }
+
 button {
     border-top: 1px solid #e88e2e;
     background: #65d672;
@@ -85,24 +117,25 @@ button {
     box-shadow: rgba(0,0,0,1) 0 1px 0;
     text-shadow: rgba(0,0,0,.4) 0 1px 0;
     color: #2417e6;
-    font-size: 30px;
+    font-size: 1.0rem;
     font-family: Helvetica, Arial, Sans-Serif;
     text-decoration: none;
-
-    
-    padding: 1vh 3vw;
+    padding: 1vw 3vw;
     cursor: pointer;
-    
-    }
+    margin: 0 5vw;
+}
+
  button:hover {
     border-top-color: #9bc219;
     background: #9bc219;
     color: #9eff6e;
     cursor: pointer;
-    }
+}
+
  button:active {
     border-top-color: #491b5c;
     background: #491b5c;
     cursor: pointer;
-    }
+}
+
 
