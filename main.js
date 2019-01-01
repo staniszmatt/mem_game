@@ -15,22 +15,18 @@ var newSeccessRate = correctMatchCounter/(wrongMatchCounter+correctMatchCounter)
 function startWhenLoaded(){
     randomCardArray();
     setupCardAttr();
-    
     $(".card").click(flipCard);
     $(".reset").click(resetGame);
     $(".new-game").click(newGame);
     $(".pop-up-wrapper").click(toggleGameCompleted);
     $(".about-me").click(aboutMe);
     $(".about-me-text").click(resetAboutMe);
-
-
 };
 
 function randomCardArray() {
     var cardIndex = cardArray.length;
     var tempStorage = "";
     var randomIndex = 0; 
-
     while (0 !== cardIndex) {
         randomIndex = Math.floor(Math.random() * cardIndex);
         cardIndex -= 1; 
@@ -45,7 +41,6 @@ function setupCardAttr(){
     var row1Index = 1;
     var row2Index = 1; 
     var row3Index = 1; 
-
     for (var cardIdIndex = 0; cardIdIndex < cardArray.length; cardIdIndex++){
         var cardImage = cardArray[cardIdIndex];
         if (cardIdIndex < 6){
@@ -62,12 +57,10 @@ function setupCardAttr(){
 };
 
 function flipCard() { 
-    console.log("flipCard Function");
     flipCardSound();
     $(this).removeClass("back-of-card");
     $(this).addClass("front-of-card");
     var imageID = $(this).attr("id");
-
     $(this).css("background-image", imageID);
     cardFlipCount++
     selectedCardArray.push(this);
@@ -117,24 +110,20 @@ function clearCardMatchCheck(){
 };
 
 function resetGame() { 
-    console.log("resetGame function");
     wrongMatchCounter = 0;
     correctMatchCounter = 0;
     $(".stats-container div:first-child").text("Game: 1");
     $(".stats-container div:nth-child(2)").text("Success Rate: 00.0%");
-
     cardReset();
 };
 
 function newGame(){
-    console.log("NewGame Function")
     var completedGameValue = verifyGameCompleted();
     if (completedGameValue === false){
-        var newSuccessRate = correctMatchCounter/(wrongMatchCounter+correctMatchCounter);
+        var newSuccessRate = correctMatchCounter/(wrongMatchCounter+correctMatchCounter)*100;
         gameCounter++;
         var gameString = "Game: "+gameCounter;
-        newSuccessRate = "Success Rate: "+newSuccessRate.toFixed(4)*100+"%";
-        
+        newSuccessRate = "Success Rate: "+newSuccessRate.toFixed(2)+"%";
         $(".stats-container div:first-child").text(gameString);
         $(".stats-container div:nth-child(2)").text(newSuccessRate);
         cardReset();
@@ -142,19 +131,15 @@ function newGame(){
 };
 
 function cardReset() { 
-    
     $(".card").removeAttr("style");
     $(".card").removeClass("front-of-card");
-
     randomCardArray();
     setupCardAttr();
     clearCardMatchCheck();
  };
 
 function verifyGameCompleted(){
-    console.log("verify Game completed function");
     var valueCheck = $(".card").hasClass("no-match");
-        console.log("Value Check is: ", valueCheck);
     if (valueCheck === true){
         toggleGameCompleted();
         $(".new-game-popup").text("Complete game before starting new one! Click to continue.");
@@ -165,29 +150,23 @@ function verifyGameCompleted(){
 };
 
 function toggleGameCompleted(){
-    console.log("toggleGameComplete Function")
     $(".pop-up-wrapper").toggle("display");
 };
 
 function aboutMe() { 
-    console.log("aboutMe function")
     $(".ok-read-me").toggle("display");
     $(".top-container").toggle("display"); 
     $(".card-layout").toggle("display");
     $(".about-me-text").toggle("display"); 
     $(".ok-read-me").toggle("display");
     $(".about-me").toggle("display");
-
     $(".foot-wrapper div").addClass("about-hidden");
     $(".foot-wrapper div").removeClass("about-me");
  }
 
  function resetAboutMe() { 
-     console.log("resetAboutMe function")
-    
     $(".foot-wrapper div").removeClass("about-hidden");
     $(".foot-wrapper div").addClass("about-me");
-
     $(".ok-read-me").toggle("display");
     $(".about-me-text").toggle("display"); 
     $(".card-layout").toggle("display");
