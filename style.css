@@ -38,10 +38,14 @@ div h1 {
     width: 100%;
 }
 .button-container {
-    display: inline-flex;
+    display: inline-block;
     width: 50%;
+    position: relative;
+    margin: auto;
 }
-
+.button-container button {
+    margin: 0 1%;
+}
 .stats-container{
     display: inline-flex;
     width: 50%;
@@ -76,8 +80,8 @@ div h1 {
 
 .card {
     display: inline-flex;
-    height: 130px;
-    width: 98px;
+    height: 100px;
+    width: 75px;
     background-size: contain;
     background-repeat: no-repeat;
     border-radius: 8px;
@@ -89,6 +93,9 @@ div h1 {
 
 .back-of-card {
     background-image: url("Images/BackofCards.jpg");
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    z-index:-1;
 }
 
 .row {
@@ -110,7 +117,7 @@ button {
     background: -ms-linear-gradient(top, #623e9c, magenta);
     background: -o-linear-gradient(top, #623e9c, magenta);
     -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;ß
+    -moz-border-radius: 25px;
     border-radius: 25px;
     -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
     -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
@@ -123,7 +130,8 @@ button {
     cursor: pointer;
     position: relative;
     margin: auto;
-    padding: 1%;
+    padding: 2%;
+    outline: none;
 }
 
  button:hover {
@@ -141,6 +149,10 @@ button {
 
 .front-of-card {
     box-shadow: inset 0 0 1em 0.25em navy;
+    transform: rotateY(180deg);
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    z-index:-1;
 }
 
 .pop-up-wrapper {
@@ -150,6 +162,7 @@ button {
     text-align: center; 
     height: 100vh;
     width: 100vw;
+    z-index:+1;
 }
 .new-game-popup {
     color: crimson;
@@ -220,4 +233,17 @@ div .about-hidden {
                 0 0 55px blue ;
     display: inline-flex;
     align-items: center;
+}
+
+.drop-down-menu {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    width: 100%;
+    z-index:+1;
+}
+
+.drop-down-menu .easy, .drop-down-menu .hard {
+    display: block;
+    margin: auto;
 }
