@@ -58,23 +58,21 @@ function randomCardArray(arrayToRandomize) {
 };
 
 function setupCardAttrEasy(){
-    
     var row1 = $("<div>").addClass("row1");
     var row2 = $("<div>").addClass("row2");
     var row3 = $("<div>").addClass("row3");
-    // var row4 = $("<div>").addClass("row4");
 
     $(".card-layout").append(row1, row2, row3);
     for (addCardIndex = 0; addCardIndex < 6; addCardIndex++){
-        var card = $("<div>").addClass("card back-of-card no-match");
+        var card = $("<div>").addClass("card back-of-card no-match flip-card-forword");
         $(".row1").append(card);
     };
     for (addCardIndex = 0; addCardIndex < 6; addCardIndex++){
-        var card = $("<div>").addClass("card back-of-card no-match");
+        var card = $("<div>").addClass("card back-of-card no-match flip-card-forword");
         $(".row2").append(card);
     };
     for (addCardIndex = 0; addCardIndex < 6; addCardIndex++){
-        var card = $("<div>").addClass("card back-of-card no-match");
+        var card = $("<div>").addClass("card back-of-card no-match flip-card-forword");
         $(".row3").append(card);
     };
 
@@ -104,19 +102,19 @@ function setupCardAttrHard(){
 
     $(".card-layout").append(row1, row2, row3, row4);
     for (addCardIndex = 0; addCardIndex < 7; addCardIndex++){
-        var card = $("<div>").addClass("card back-of-card no-match");
+        var card = $("<div>").addClass("card back-of-card no-match flip-card-forword");
         $(".row1").append(card);
     };
     for (addCardIndex = 0; addCardIndex < 7; addCardIndex++){
-        var card = $("<div>").addClass("card back-of-card no-match");
+        var card = $("<div>").addClass("card back-of-card no-match flip-card-forword");
         $(".row2").append(card);
     };
     for (addCardIndex = 0; addCardIndex < 7; addCardIndex++){
-        var card = $("<div>").addClass("card back-of-card no-match");
+        var card = $("<div>").addClass("card back-of-card no-match flip-card-forword");
         $(".row3").append(card);
     };
     for (addCardIndex = 0; addCardIndex < 7; addCardIndex++){
-        var card = $("<div>").addClass("card back-of-card no-match");
+        var card = $("<div>").addClass("card back-of-card no-match flip-card-forword");
         $(".row4").append(card);
     };
 
@@ -143,11 +141,18 @@ function setupCardAttrHard(){
 };
 
 function flipCard() { 
+    if ($(this).hasClass("check")){
+        return;
+    }
     flipCardSound();
+    $(this).toggleClass("flip-card-forword flip-card-backword");
     $(this).removeClass("back-of-card");
     $(this).addClass("front-of-card");
-    // $(this).addClass("flip-card");
+
+    
+
     var imageID = $(this).attr("id");
+    $(this).addClass("check");
     $(this).css("background-image", imageID);
     cardFlipCount++
     selectedCardArray.push(this);
@@ -178,19 +183,29 @@ function cardMatchCheck() {
         } else if (div1image === div2image){
             $(div1).removeClass("no-match");
             $(div2).removeClass("no-match");
+            $(div1).removeClass("check");
+            $(div2).removeClass("check");
             correctMatchCounter++;
             clearCardMatchCheck();
             matchFoundSound()
-        } 
-    } else if (arrayLength === 3) {
-        $(".no-match").addClass("back-of-card");
-        $(".no-match").removeAttr("style");
-        $(".no-match").removeClass("front-of-card");
-        $(".about-hidden").removeClass("front-of-card");
-        wrongMatchCounter++;
-        clearCardMatchCheck();
+        } else if (div1image !== div2image){
+            setTimeout(function() {resetCards(div1, div2)}, 500);
+        };
     };
 };
+
+function resetCards(div1, div2) { 
+    $(div1).toggleClass("flip-card-forword flip-card-backword");
+    $(div2).toggleClass("flip-card-forword flip-card-backword");
+    $(".no-match").addClass("back-of-card");
+    $(".check").removeClass("check"); 
+    
+    $(".no-match").removeAttr("style");
+    $(".no-match").removeClass("front-of-card");
+    
+    wrongMatchCounter++;
+    clearCardMatchCheck();
+ }
 
 function clearCardMatchCheck(){
     selectedCardArray = [];
@@ -204,11 +219,14 @@ function resetGame() {
     $(".stats-container div:first-child").text("Game: 1");
     $(".stats-container div:nth-child(2)").text("Success Rate: 00.0%");
     cardReset();
+    cycleCards();
 };
 
 function newGame(){
-    var completedGameValue = verifyGameCompleted();
+    var completedGameValue =  false//verifyGameCompleted();
+
     if (completedGameValue === false){
+        console.log("check Game");
         var newSuccessRate = correctMatchCounter/(wrongMatchCounter+correctMatchCounter)*100;
         gameCounter++;
         var gameString = "Game: "+gameCounter;
@@ -216,6 +234,7 @@ function newGame(){
         $(".stats-container div:first-child").text(gameString);
         $(".stats-container div:nth-child(2)").text(newSuccessRate);
         cardReset();
+        cycleCards()
     };
 };
 
@@ -257,6 +276,7 @@ function toggleGameCompleted(){
 };
 
 function aboutMe() { 
+    $(".myFace").toggle('display');
     $(".ok-read-me").toggle("display");
     $(".top-container").toggle("display"); 
     $(".card-layout").toggle("display");
@@ -268,6 +288,7 @@ function aboutMe() {
  }
 
  function resetAboutMe() { 
+    $(".myFace").toggle('display');
     $(".foot-wrapper div").removeClass("about-hidden");
     $(".foot-wrapper div").addClass("about-me");
     $(".ok-read-me").toggle("display");
@@ -295,9 +316,27 @@ function aboutMe() {
     $(".row3").remove();
     $(".row4").remove();
     setupCardAttrHard();
+    cycleCards();
     gameDifficultyEasy = false; 
   };
   
+  function cycleCards(){
+    var flipCard = $(".card");
+    var currentDelay = 0;
+    var delayDelta = 100;
+    $(".card").addClass("back-of-card");
+    $(".card").removeClass("front-of-card");
+
+    
+    for( var i=0; i< flipCard.length; i++){
+        $(flipCard[i]).toggleClass("flip-card-forword flip-card-backword");
+        $(flipCard[i]).css("animation-delay", currentDelay+'ms');
+
+        currentDelay+= delayDelta;
+    };
+    setTimeout(function() { $(".card").removeClass("flip-card"); }, currentDelay+1200);
+  };
+
   
   
   function flipCardSound() { 

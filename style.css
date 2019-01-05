@@ -89,13 +89,12 @@ div h1 {
     background-position: center;
     background-color: white;
     align-content: center;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
 }
 
 .back-of-card {
     background-image: url("Images/BackofCards.jpg");
-    transition: 0.6s;
-    transform-style: preserve-3d;
-    z-index:-1;
 }
 
 .row {
@@ -149,10 +148,6 @@ button {
 
 .front-of-card {
     box-shadow: inset 0 0 1em 0.25em navy;
-    transform: rotateY(180deg);
-    transition: 0.6s;
-    transform-style: preserve-3d;
-    z-index:-1;
 }
 
 .pop-up-wrapper {
@@ -188,7 +183,6 @@ div .about-me {
     color: black;
     cursor: pointer;
     font-size: 5vh;
-    width: 20px; 
     display: inline;
 
     text-shadow:  
@@ -246,4 +240,35 @@ div .about-hidden {
 .drop-down-menu .easy, .drop-down-menu .hard {
     display: block;
     margin: auto;
+}
+
+.myFace {
+    display: none;
+    height: 125px;
+    width: 125px;
+    border-radius: 25px;
+}
+
+@keyframes flipforward{
+    from {
+        transform: rotateY(180deg);
+    }
+    to {
+        transform: rotateY(0deg)
+    }
+}
+
+@keyframes flipback{
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(180deg)
+    }
+}
+.flip-card-forword {
+    animation-name: flipforward;
+}
+.flip-card-backword {
+    animation-name: flipback;
 }
